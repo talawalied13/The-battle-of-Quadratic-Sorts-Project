@@ -1,0 +1,50 @@
+\documentclass{beamer}
+
+\usetheme{Madrid}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\input{tikz_styles.tex}
+
+\title{Insertion Sort Invariant Visualizer}
+\author{Group 9}
+\institute{Sorbonne University Abu Dhabi}
+\date{January 2026}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Task B Objective}
+We visualize the loop invariant of Insertion Sort.
+\begin{itemize}
+  \item Green zone: indices 0 to $i-1$ are sorted
+  \item Red cell: key currently being inserted
+  \item White cells: unsorted part
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Invariant Visualization}
+\only<1>{
+\begin{tikzpicture}
+\node[sorted] at (0,0) {5};
+\node[key] at (1,0) {2};
+\node[unsorted] at (2,0) {4};
+\node[unsorted] at (3,0) {1};
+\end{tikzpicture}
+}
+
+\only<2>{
+\begin{tikzpicture}
+\node[sorted] at (0,0) {2};
+\node[sorted] at (1,0) {5};
+\node[key] at (2,0) {4};
+\node[unsorted] at (3,0) {1};
+\end{tikzpicture}
+}
+\end{frame}
+
+\end{document}
