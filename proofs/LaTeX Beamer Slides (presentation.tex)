@@ -1,64 +1,125 @@
 \documentclass{beamer}
-\\
-A single-element array is trivially sorted.
+
+\usetheme{Madrid}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+\title{The Battle of Quadratic Sorts}
+\subtitle{Insertion Sort vs Bubble Sort}
+\author{L1 Mathematics – Computer Science Project}
+\date{Semester 1}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
 \end{frame}
 
-% 
-\begin{frame}{Proof – Maintenance}
-Assume $L[0 \ldots i-1]$ is sorted.
-\\
-The key $L[i]$ is inserted into its correct position by shifting larger elements.
-\\
-Thus, $L[0 \ldots i]$ is sorted.
-\end{frame}
-
-% 
-\begin{frame}{Proof – Termination}
-When $i = n$, the invariant gives:
-\\
-$L[0 \ldots n-1]$ is sorted.
-\\
-Therefore, Insertion Sort is correct.
-\end{frame}
-
-% 
-\begin{frame}{Worst Case Comparisons}
-Bubble Sort:
-\[
-C_{bubble} = \sum_{k=1}^{n-1} k = \frac{n(n-1)}{2}
-\]
-
-
-Insertion Sort:
-\[
-C_{insert} = \sum_{k=1}^{n-1} k = \frac{n(n-1)}{2}
-\]
-\end{frame}
-
-% 
-\begin{frame}{Why Insertion Sort Is Faster}
+\begin{frame}{Project Objective}
 \begin{itemize}
-\item Bubble Sort swap = \textbf{3 writes}
-\item Insertion Sort shift = \textbf{1 write}
-\item Memory writes dominate execution time
+  \item Compare Bubble Sort and Insertion Sort
+  \item Measure performance experimentally
+  \item Visualize the logic of Insertion Sort
+  \item Prove correctness using a loop invariant
 \end{itemize}
 \end{frame}
 
-% 
-\begin{frame}{Best Case – $O(n)$}
+\begin{frame}{Why Visualize Insertion Sort?}
 \begin{itemize}
-\item Bubble Sort: early stop using swapped flag
-\item Insertion Sort: while-condition fails immediately
+  \item Builds a sorted subarray incrementally
+  \item Has a clear invariant
+  \item Easy to represent visually
+  \item Demonstrates correctness step-by-step
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Insertion Sort – Visual Model}
+\textbf{Color Convention:}
+\begin{itemize}
+  \item \textcolor{green}{Green Zone}: Sorted part \(L[0 \ldots i-1]\)
+  \item \textcolor{red}{Red Cell}: Current key \(L[i]\)
+  \item White Cells: Unsorted elements
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Insertion Sort – Iteration Example}
+\begin{center}
+\begin{tikzpicture}
+\node[draw, fill=green!30, minimum size=1cm] at (0,0) {1};
+\node[draw, fill=green!30, minimum size=1cm] at (1,0) {3};
+\node[draw, fill=green!30, minimum size=1cm] at (2,0) {4};
+\node[draw, fill=red!30, minimum size=1cm]   at (3,0) {2};
+\node[draw, minimum size=1cm]                at (4,0) {5};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+First three elements are sorted. The red element is inserted.
+\end{frame}
+
+\begin{frame}{Green Zone Growth}
+\begin{itemize}
+  \item At each iteration, the Green Zone grows by one cell
+  \item The key is placed in its correct position
+  \item Sorted order is preserved
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Loop Invariant}
+\textbf{Invariant Statement:}
+
+\medskip
+\emph{At the start of iteration \(i\), the subarray \(L[0 \ldots i-1]\) is sorted.}
+\end{frame}
+
+\begin{frame}{Invariant – Initialization}
+\begin{itemize}
+  \item At \(i = 1\), the subarray contains one element
+  \item A single element is always sorted
+\end{itemize}
+
+\medskip
+Invariant holds before the loop starts.
+\end{frame}
+
+\begin{frame}{Invariant – Maintenance}
+\begin{itemize}
+  \item Assume \(L[0 \ldots i-1]\) is sorted
+  \item The key \(L[i]\) is inserted into the correct position
+  \item Larger elements are shifted right
+\end{itemize}
+
+\medskip
+After insertion, \(L[0 \ldots i]\) is sorted.
+\end{frame}
+
+\begin{frame}{Invariant – Termination}
+\begin{itemize}
+  \item Loop ends at \(i = n\)
+  \item Invariant guarantees \(L[0 \ldots n-1]\) is sorted
+\end{itemize}
+
+\medskip
+Insertion Sort is correct.
+\end{frame}
+
+\begin{frame}{Automated TikZ Generation}
+\begin{itemize}
+  \item TikZ code generated automatically by Python
+  \item One frame per iteration
+  \item Uses \texttt{\textbackslash only<i>} for animation
+  \item Ensures consistency and scalability
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Conclusion}
-Insertion Sort is faster in practice due to:
 \begin{itemize}
-\item Fewer memory writes
-\item Better cache behavior
-\item Efficient handling of nearly sorted data
+  \item Insertion Sort logic is clearly visualized
+  \item The Green Zone represents the invariant
+  \item Automation removes human error
+  \item Visualization supports formal proof
 \end{itemize}
 \end{frame}
 
 \end{document}
+
