@@ -1,0 +1,64 @@
+\documentclass{beamer}
+\\
+A single-element array is trivially sorted.
+\end{frame}
+
+% 
+\begin{frame}{Proof – Maintenance}
+Assume $L[0 \ldots i-1]$ is sorted.
+\\
+The key $L[i]$ is inserted into its correct position by shifting larger elements.
+\\
+Thus, $L[0 \ldots i]$ is sorted.
+\end{frame}
+
+% 
+\begin{frame}{Proof – Termination}
+When $i = n$, the invariant gives:
+\\
+$L[0 \ldots n-1]$ is sorted.
+\\
+Therefore, Insertion Sort is correct.
+\end{frame}
+
+% 
+\begin{frame}{Worst Case Comparisons}
+Bubble Sort:
+\[
+C_{bubble} = \sum_{k=1}^{n-1} k = \frac{n(n-1)}{2}
+\]
+
+
+Insertion Sort:
+\[
+C_{insert} = \sum_{k=1}^{n-1} k = \frac{n(n-1)}{2}
+\]
+\end{frame}
+
+% 
+\begin{frame}{Why Insertion Sort Is Faster}
+\begin{itemize}
+\item Bubble Sort swap = \textbf{3 writes}
+\item Insertion Sort shift = \textbf{1 write}
+\item Memory writes dominate execution time
+\end{itemize}
+\end{frame}
+
+% 
+\begin{frame}{Best Case – $O(n)$}
+\begin{itemize}
+\item Bubble Sort: early stop using swapped flag
+\item Insertion Sort: while-condition fails immediately
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusion}
+Insertion Sort is faster in practice due to:
+\begin{itemize}
+\item Fewer memory writes
+\item Better cache behavior
+\item Efficient handling of nearly sorted data
+\end{itemize}
+\end{frame}
+
+\end{document}
