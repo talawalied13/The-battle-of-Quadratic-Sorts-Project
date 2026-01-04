@@ -132,6 +132,18 @@ def print_results(results, N=2000):
 # Main execution
 # I have explicitly separated the main execution and written it below
 # so that everything is in the same 
+# Task B: Automatic TikZ generation for visualizing Insertion Sort loop invariant
+def generate_tikz(L, i):
+    print(r"\begin{tikzpicture}")
+    for idx, val in enumerate(L):
+        if idx < i:
+            color = "green"
+        elif idx == i:
+            color = "red"
+        else:
+            color = "white"
+        print(rf"\node[draw, fill={color}!30] at ({idx},0) {{{val}}};")
+    print(r"\end{tikzpicture}")
 if __name__ == "__main__":
     N = 2000
     results = run_benchmark(N)
