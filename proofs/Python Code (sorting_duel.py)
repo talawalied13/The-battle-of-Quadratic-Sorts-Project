@@ -1,64 +1,94 @@
 import time
+import random
+
+def bubble_sort(L):
+    n = len(L)
+    i = 0
+    while i < n:
+        swapped = False
+        j = 0
+        while j < n - i - 1:
+            if L[j] > L[j + 1]:
+                temp = L[j]
+                L[j] = L[j + 1]
+                L[j + 1] = temp
+                swapped = True
+            j += 1
+        if not swapped:
+            return
+        i += 1
+
+
 def insertion_sort(L):
-for i in range(1, len(L)):
-key = L[i]
-j = i - 1
-while j >= 0 and L[j] > key:
-L[j + 1] = L[j]
-j -= 1
-L[j + 1] = key
+    i = 1
+    while i < len(L):
+        current = L[i]
+        pos = i
+        while pos > 0 and L[pos - 1] > current:
+            L[pos] = L[pos - 1]
+            pos -= 1
+        L[pos] = current
+        i += 1
 
-# Benchmark Function
-def benchmark(sort_func, data):
-start = time.time()
-sort_func(data)
-return time.time() - start
 
-# Performance Test
-def run_benchmark(N=2000):
-scenarios = {
-"Sorted (Best)": list(range(N)),
-"Random": random.sample(range(N), N),
-"Reversed (Worst)": list(range(N, 0, -1))
-}
+def measure(sort_function, arr):
+    start = time.perf_counter()
+    sort_function(arr)
+    end = time.perf_counter()
+    return end - start
 
-print("=" * 70)
-print("BENCHMARK RESULTS (N=2000)")
-print("=" * 70)
-print(f"{'Scenario':20} {'Bubble Sort (s)':18} {'Insertion Sort (s)':20} Winner")
-print("-" * 70)
 
-for name, data in scenarios.items():
-b_data = data.copy()
-i_data = data.copy()
+def benchmark(N=2000):
+    cases = [
+        ("Sorted (Best)", list(range(N))),
+        ("Random", random.sample(range(N), N)),
+        ("Reversed (Worst)", list(range(N, 0, -1)))
+    ]
 
-t_bubble = benchmark(bubble_sort, b_data)
-t_insert = benchmark(insertion_sort, i_data)
+    print("=" * 72)
+    print("BENCHMARK RESULTS (N = 2000)")
+    print("=" * 72)
+    print(f"{'Case':20} {'Bubble (s)':15} {'Insertion (s)':15} Winner")
+    print("-" * 72)
 
-if abs(t_bubble - t_insert) < 1e-4:
-winner = "Tie"
-elif t_bubble < t_insert:
-winner = "Bubble"
-else:
-winner = "Insertion"
+    for name, base in cases:
+        b1 = base.copy()
+        b2 = base.copy()
 
-print(f"{name:20} {t_bubble:<18.4f} {t_insert:<20.4f} {winner}")
+        t1 = measure(bubble_sort, b1)
+        t2 = measure(insertion_sort, b2)
 
-# TikZ Generator for Insertion Sort
-def generate_tikz(L, index_i):
-print("\\begin{tikzpicture}")
-print(f"% Frame {index_i}: First {index_i} elements sorted")
-print(f"\\only<{index_i}>{{")
-for idx, val in enumerate(L):
-if idx < index_i:
-color = "green!30"
-elif idx == index_i:
-color = "red!30"
-else:
-color = "white"
-print(f" \\node[draw, fill={color}] at ({idx},0) {{{val}}};")
-print("}")
-print("\\end{tikzpicture}")
+        if abs(t1 - t2) < 1e-4:
+            winner = "Tie"
+        elif t1 < t2:
+            winner = "Bubble"
+        else:
+            winner = "Insertion"
 
-if __name__ == '__main__':
-run_benchmark()
+        print(f"{name:20} {t1:<15.4f} {t2:<15.4f} {winner}")
+
+    print("=" * 72)
+
+
+def generate_tikz(L, i):
+    print("\\begin{tikzpicture}")
+    print(f"% Insertion Sort - Step {i}")
+    print(f"\\only<{i}>{{")
+
+    for idx in range(len(L)):
+        if idx < i:
+            color = "green!25"
+        elif idx == i:
+            color = "red!25"
+        else:
+            color = "white"
+
+        print(f"  \\node[draw, minimum size=0.9cm, fill={color}] "
+              f"at ({idx},0) {{{L[idx]}}};")
+
+    print("}")
+    print("\\end{tikzpicture}")
+
+if __name__ == "__main__":
+    benchmark()
+
