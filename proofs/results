@@ -1,0 +1,96 @@
+Benchmark Results
+
+\begin{frame}{Benchmark Results (N = 2000)}
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Scenario} & \textbf{Bubble Sort (s)} & \textbf{Insertion Sort (s)} & \textbf{Winner} \\
+\hline
+Sorted (Best Case) & 0.0003 & 0.0003 & Tie \\
+Random Order & 0.4600 & 0.2100 & Insertion Sort \\
+Reversed (Worst Case) & 0.9800 & 0.5100 & Insertion Sort \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+
+
+
+
+Graphical Interpretation (text) 
+
+\begin{frame}{Performance Comparison}
+\begin{itemize}
+  \item Best case: both algorithms run in linear time
+  \item Random case: Insertion Sort is more than twice as fast
+  \item Worst case: Insertion Sort significantly outperforms Bubble Sort
+\end{itemize}
+\end{frame}
+
+
+
+
+
+Why Insertion Sort Is Faster
+
+\begin{frame}{Why Is Insertion Sort Faster?}
+\begin{itemize}
+  \item Both algorithms perform the same number of comparisons
+  \item Bubble Sort uses swaps (3 memory writes per operation)
+  \item Insertion Sort uses shifts (1 memory write per operation)
+  \item Memory writes are more expensive than comparisons
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+Complexity 
+
+\begin{frame}{Time Complexity Summary}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Algorithm} & \textbf{Best Case} & \textbf{Worst Case} \\
+\hline
+Bubble Sort & $O(n)$ & $O(n^2)$ \\
+Insertion Sort & $O(n)$ & $O(n^2)$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+
+
+
+
+Invariant Reminder
+
+\begin{frame}{Link Between Proof and Results}
+\begin{itemize}
+  \item The invariant guarantees correctness
+  \item The green zone visualization shows the invariant in action
+  \item Correctness + fewer memory writes = better performance
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+FINAL CONCLUSION
+
+\begin{frame}{Final Conclusion}
+\begin{itemize}
+  \item Both Bubble Sort and Insertion Sort have quadratic complexity
+  \item Experimental results confirm theoretical analysis
+  \item Insertion Sort is faster in practice
+  \item Visualization and invariants reinforce correctness
+\end{itemize}
+\end{frame}
