@@ -198,42 +198,63 @@ Random & 0.175288 & 0.068525 & Insertion \\
 \section{Part C: Correctness Proof of Insertion Sort}
 
 \begin{frame}{Loop Invariant}
-\textbf{Invariant Statement:}
+\textbf{Invariant Statement}
 
 \medskip
 \emph{At the start of iteration \(i\), the subarray \(L[0 \ldots i-1]\) is sorted.}
+
+\medskip
+This invariant captures the idea that Insertion Sort always maintains a
+sorted prefix of the array.  
+Each iteration extends this sorted part by inserting one new element
+into its correct position.
 \end{frame}
 
 \begin{frame}{Invariant – Initialization}
+At the beginning of the algorithm, we start with \(i = 1\).
+
+\medskip
 \begin{itemize}
-  \item<1-> At \(i = 1\), the subarray contains one element
-  \item<2-> A single element is always sorted
+  \item<1-> The subarray \(L[0]\) contains exactly one element
+  \item<2-> A single element is trivially sorted
 \end{itemize}
 
 \medskip
-Invariant holds before the loop starts.
+Therefore, the invariant holds before the first iteration of the loop.
 \end{frame}
+
 
 \begin{frame}{Invariant – Maintenance}
+Assume that at the start of iteration \(i\), the subarray
+\(L[0 \ldots i-1]\) is sorted.
+
+\medskip
 \begin{itemize}
-  \item<1-> Assume \(L[0 \ldots i-1]\) is sorted
-  \item<2-> The key \(L[i]\) is inserted into the correct position
-  \item<3-> Larger elements are shifted to the right
+  \item<1-> The element \(L[i]\), called the key, is compared with elements in the sorted subarray
+  \item<2-> Larger elements are shifted one position to the right
+  \item<3-> The key is inserted into its correct position
 \end{itemize}
 
 \medskip
-After insertion, \(L[0 \ldots i]\) is sorted.
+After this process, the subarray \(L[0 \ldots i]\) is sorted, so the
+invariant is preserved.
 \end{frame}
+
 
 \begin{frame}{Invariant – Termination}
+The loop terminates when \(i = n\), where \(n\) is the length of the array.
+
+\medskip
 \begin{itemize}
-  \item<1-> The loop ends when \(i = n\)
-  \item<2-> The invariant guarantees that the entire array is sorted
+  \item<1-> By the invariant, the subarray \(L[0 \ldots n-1]\) is sorted
+  \item<2-> This subarray is the entire array
 \end{itemize}
 
 \medskip
-Insertion Sort is correct.
+Therefore, when the algorithm terminates, the entire array is sorted.
+This proves the correctness of Insertion Sort.
 \end{frame}
+
 
 
 
@@ -249,3 +270,4 @@ Insertion Sort is correct.
 
 
 \end{document}
+
