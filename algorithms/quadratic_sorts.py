@@ -1,39 +1,30 @@
 import random
 import time
 
-#ok, guys im basically just going to comment every step 
-#so that you dont need to search up anything for the presentation
-#But I think for math you'll still need to look up some stuff
-
-# P.S. I'll delete the redundant comments once we're done with the project if needed
-
 # Task A.1: The Challengers (Sorting Algorithms)
 
-def bubble_sort(L): # The parameter is the list that going to be sorted
-    n = len(L) # Get the length of the list
-    for i in range(n - 1): # Traverse through all elements in the list
+def bubble_sort(L):
+    n = len(L)
+    for i in range(n - 1):
         swapped = False # Flag to check if any swapping happened
         
-        for j in range(0, n - i - 1): # Last i elements are already sorted at the point we reach here
-            if L[j] > L[j + 1]: # Compare adjacent elements
+        for j in range(0, n - i - 1):
+            if L[j] > L[j + 1]:
                 L[j], L[j + 1] = L[j + 1], L[j] # Swap if they are in the wrong order
-                swapped = True # Set the flag to True if a swap occurred
+                swapped = True
                 
         if not swapped:
-            break # If no two elements were swapped in the inner loop, the list is sorted
+            break
 
 def insertion_sort(L):
-    # Start from the second element (index 1)
     for i in range(1, len(L)):
         key = L[i]  # Current element to insert
         j = i - 1
         
-        # Move elements of L[0..i-1] that are > key
-        # to one position ahead of their current position
-        while j >= 0 and L[j] > key: # Basically just moving the unchecked element back until it reaches its correct position if it is not there initially
+        while j >= 0 and L[j] > key:
             L[j + 1] = L[j]
             j -= 1
-        L[j + 1] = key # Place the key in its correct position
+        L[j + 1] = key
 
 
 # Task A.2: The Duel (Performance Test)
@@ -42,37 +33,32 @@ def run_benchmark(N=2000):
     print(f"Running benchmark with N={N} elements...")
     
     # Create THREE DISTINCT SCENARIOS (not copies of each other)
-    # 1. Sorted List (Best Case)
-    sorted_list = list(range(N))
+    sorted_list = list(range(N)) # best case
     
-    # 2. Reversed List (Worst Case) 
-    reversed_list = list(range(N, 0, -1))
+    reversed_list = list(range(N, 0, -1)) # worst case
     
-    # 3. Random List (Average Case)
-    random_list = [random.randint(0, 10000) for _ in range(N)]
+    random_list = [random.randint(0, 10000) for _ in range(N)] # average case
     
-    results = [] # this will store the results of each test case
+    results = []
     
     # Test 1: Sorted List
     print("\n1. Testing Sorted List (Best Case)...")
     
     # For Bubble Sort
-    bubble_list = list(sorted_list)  # Copy the scenario list
+    bubble_list = list(sorted_list)
     start = time.perf_counter()
     bubble_sort(bubble_list)
-    bubble_time = time.perf_counter() - start # now we have the time taken for bubble sort - best case
+    bubble_time = time.perf_counter() - start
     
     # For Insertion Sort  
-    insertion_list = list(sorted_list)  # Another copy of the same scenario list
+    insertion_list = list(sorted_list)
     start = time.perf_counter()
     insertion_sort(insertion_list)
-    insertion_time = time.perf_counter() - start # and the same for insertion sort
+    insertion_time = time.perf_counter() - start
     
-    # we add every both algorithms' results for the scenario to the results list
     results.append(("Sorted (Best)", bubble_time, insertion_time))
     
     # Test 2: Reversed List
-    # We do the same exact steps except for the reversed list scenario 
     print("2. Testing Reversed List (Worst Case)...")
     
     bubble_list = list(reversed_list)
@@ -88,7 +74,6 @@ def run_benchmark(N=2000):
     results.append(("Reversed (Worst)", bubble_time, insertion_time))
     
     # Test 3: Random List
-    # And for the random list too
     print("3. Testing Random List (Average Case)...")
     
     bubble_list = list(random_list)
@@ -103,7 +88,6 @@ def run_benchmark(N=2000):
     
     results.append(("Random", bubble_time, insertion_time))
     
-    # now we have both algorithms' results for all three scenarios
     return results
 
 # Task A.3: Analysis of Results
@@ -129,9 +113,6 @@ def print_results(results, N=2000):
         print(f"{scenario:<20} {bubble_str:<20} {insertion_str:<20} {winner:<15}")
     print("="*65)
 
-# Main execution
-# I have explicitly separated the main execution and written it below
-# so that everything is in the same 
 if __name__ == "__main__":
     N = 2000
     results = run_benchmark(N)
