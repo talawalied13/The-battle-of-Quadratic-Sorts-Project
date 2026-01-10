@@ -6,6 +6,11 @@
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\input{tikz_styles.tex}
+
+
 
 \title{Comparison of Sorting Algorithms}
 \subtitle{Bubble Sort vs Insertion Sort}
@@ -110,9 +115,10 @@
 \end{algorithmic}
 \end{algorithm}
 \end{frame}
-\section{Part B: Automated TikZ Visualization}
 
-\begin{frame}{Automatic TikZ Generation (Idea)}
+\section(Part B)
+\begin{frame}{Task B-Automatic TikZ Generation }
+
 \begin{itemize}
     \item<1-> Python generates TikZ code at each iteration of Insertion Sort
     \item<2-> The array is drawn as a row of square nodes
@@ -122,6 +128,20 @@
     \item<6-> Beamer overlays simulate the progression of the loop invariant
 \end{itemize}
 \end{frame}
+
+%------------------------------------------------
+\begin{frame}{Insertion Sort – Invariant Visualizer}
+
+\only<1>{}
+\only<2>{}
+\only<3>{}
+
+\vspace{0.3cm}
+
+\input{insertion_tikz_output.tex}
+
+\end{frame}
+
 
 
 %------------------------------------------------
