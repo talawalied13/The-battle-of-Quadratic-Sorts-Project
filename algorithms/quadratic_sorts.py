@@ -118,15 +118,3 @@ if __name__ == "__main__":
     results = run_benchmark(N)
     print_results(results, N)
     
-# Task B: Automatic TikZ generation for visualizing Insertion Sort loop invariant
-def generate_tikz(L, i):
-    print(r"\begin{tikzpicture}")
-    for idx, val in enumerate(L):
-        if idx < i:
-            color = "green"
-        elif idx == i:
-            color = "red"
-        else:
-            color = "white"
-        print(rf"\node[draw, fill={color}!30] at ({idx},0) {{{val}}};")
-    print(r"\end{tikzpicture}")
