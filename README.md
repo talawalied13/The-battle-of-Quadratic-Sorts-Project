@@ -8,6 +8,6 @@ This project examines and compares quadratic-time sorting algorithms (such as bu
 Contents
 The report is written in LaTeX and covers the algorithms studied, the comparison method used, and the results.
 My contribution
-This was a team project. My main contributions were: [add a line here, for example: writing the section on insertion sort, running the timing experiments, or producing the comparison charts].
+This was a team project. My main contributions were: creating latex presentations and creating a phython code that automaticaly prints latex 
 Notes
 Completed as part of coursework at Sorbonne University Abu Dhabi.
